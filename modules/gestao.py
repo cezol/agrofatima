@@ -106,10 +106,10 @@ class NotaFiscal:
             self.message = ('Fornecedor não encontrado. Cadastre em:'
                            'https://gestaoclick.com/fornecedores/adicionar')
             return
-
+        print(11111)
         if self._verifica_duplicidade():
             return
-        
+        print(2222)
         self._criar_nova_compra()
 
     def _buscar_fornecedor_id(self):
@@ -137,6 +137,7 @@ class NotaFiscal:
                 }} for p in self.pagamentos]
 
     def _criar_nova_compra(self):
+        print(33)
         params = {
             "fornecedor_id": self.fornecedor_id,
             "loja_id": self.loja_id,
