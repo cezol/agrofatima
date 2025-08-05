@@ -13,7 +13,7 @@ TWILIO_SID = os.getenv("TWILIO_SID")
 IMGBB_API_KEY = os.getenv("IMGBB_API_KEY")
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
-GESTAO_Content_Type = os.getenv("GESTAO_Content_Type")
+GESTAO_Content_Type = 'application/json'
 GESTAO_access_token = os.getenv("GESTAO_access_token")
 GESTAO_secret_access_token = os.getenv("GESTAO_secret_access_token")
 GESTAO_base_url = 'https://api.beteltecnologia.com/'
@@ -136,5 +136,6 @@ Saída:
 
 ⚠️ Não adicione explicações ou texto adicional. Apenas a lista, no formato exato solicitado.
 """
+
 
 
