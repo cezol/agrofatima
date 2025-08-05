@@ -120,7 +120,7 @@ class NotaFiscal:
         for nome_loja, loja_id in self.LOJAS.items():
             r = self.api.get('compras', {"loja_id": loja_id, 'fornecedor_id': self.fornecedor_id})
             for c in r.get('data', []):
-                print(2)
+                print(c['Compra']['numero_nfe'], str(self.DANFE))
                 if str(int(c['Compra']['numero_nfe'])) == str(self.DANFE):
                     self.compra_id = c['Compra']['id']
                     link = f"https://gestaoclick.com/compras/editar/{self.compra_id}"
