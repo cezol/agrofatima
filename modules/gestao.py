@@ -106,10 +106,8 @@ class NotaFiscal:
             self.message = ('Fornecedor não encontrado. Cadastre em:'
                            'https://gestaoclick.com/fornecedores/adicionar')
             return
-        print(11111)
         if self._verifica_duplicidade():
             return
-        print(2222)
         self._criar_nova_compra()
 
     def _buscar_fornecedor_id(self):
@@ -117,7 +115,9 @@ class NotaFiscal:
         return r.get('data', [{}])[0].get('id') if r.get('meta', {}).get('total_registros') else None
 
     def _verifica_duplicidade(self):
+        print(111111111)
         for nome_loja, loja_id in self.LOJAS.items():
+            print(2222,loja_id,self.fornecedor_id)
             r = self.api.get('compras', {"loja_id": loja_id, 'fornecedor_id': self.fornecedor_id})
             for c in r.get('data', []):
                 if str(int(c['Compra']['numero_nfe'])) == str(self.DANFE):
