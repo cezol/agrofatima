@@ -102,7 +102,7 @@ class NotaFiscal:
         self.data_emissao = csv['data_emissao']
         self.pagamentos = csv['pagamentos']
         self.fornecedor_id = self._buscar_fornecedor_id()
-
+        print(csv)
         if not self.fornecedor_id:
             self.message = ('Fornecedor não encontrado. Cadastre em:'
                            'https://gestaoclick.com/fornecedores/adicionar')
@@ -110,7 +110,7 @@ class NotaFiscal:
 
         if self._verifica_duplicidade():
             return
-
+        
         self._criar_nova_compra()
 
     def _buscar_fornecedor_id(self):
