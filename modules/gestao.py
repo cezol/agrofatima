@@ -102,7 +102,6 @@ class NotaFiscal:
         self.data_emissao = csv['data_emissao']
         self.pagamentos = csv['pagamentos']
         self.fornecedor_id = self._buscar_fornecedor_id()
-        print(csv)
         if not self.fornecedor_id:
             self.message = ('Fornecedor não encontrado. Cadastre em:'
                            'https://gestaoclick.com/fornecedores/adicionar')
@@ -154,6 +153,7 @@ class NotaFiscal:
             self.message = (f"❌ Erro ao cadastrar nota na loja *{self.loja}*:\n{erro}\n"
                             "Verifique e tente novamente: https://gestaoclick.com/compras")
             return
+        print('ssssssssssssssssssssssssssssssssssssss')
         self.compra_id = r['data']['id']
         link = f'https://gestaoclick.com/compras/editar/{self.compra_id}'
         parcelas = "".join(
