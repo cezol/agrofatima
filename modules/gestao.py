@@ -115,7 +115,7 @@ class NotaFiscal:
         return r.get('data', [{}])[0].get('id') if r.get('meta', {}).get('total_registros') else None
 
     def _verifica_duplicidade(self):
-        print(111111111)
+        print(self.LOJAS.items())
         for nome_loja, loja_id in self.LOJAS.items():
             print(2222,loja_id,self.fornecedor_id)
             r = self.api.get('compras', {"loja_id": loja_id, 'fornecedor_id': self.fornecedor_id})
