@@ -47,7 +47,6 @@ class DocumentHandler:
             csv = completion.choices[0].message.content.strip()
             csv = csv.strip().removeprefix("```python").removesuffix("```").strip()
             csv = json.loads(csv)
-            print(csv)
             add_nota = NotaFiscal(csv, loja)
             mensagem = add_nota.message
         except Exception as e:
@@ -83,3 +82,4 @@ class DocumentHandler:
         except Exception as e:
             mensagem = f"❌ Erro ao processar imagem: {e}"
         return str(mensagem)
+
