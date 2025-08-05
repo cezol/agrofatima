@@ -16,8 +16,7 @@ DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 GESTAO_Content_Type = os.getenv("GESTAO_Content_Type")
 GESTAO_access_token = os.getenv("GESTAO_access_token")
 GESTAO_secret_access_token = os.getenv("GESTAO_secret_access_token")
-GESTAO_base_url = os.getenv("GESTAO_base_url")
-
+GESTAO_base_url = 'https://api.beteltecnologia.com/'
 MONGODB_URI = os.getenv("MONGODB_URI")
 cluster = MongoClient(MONGODB_URI, tls=True, tlsAllowInvalidCertificates=True)
 db = cluster["Agrofatima"]
@@ -137,4 +136,5 @@ Saída:
 
 ⚠️ Não adicione explicações ou texto adicional. Apenas a lista, no formato exato solicitado.
 """
+
 
