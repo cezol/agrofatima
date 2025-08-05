@@ -116,16 +116,17 @@ class NotaFiscal:
         return r.get('data', [{}])[0].get('id') if r.get('meta', {}).get('total_registros') else None
 
     def _verifica_duplicidade(self):
-        print(1)
         for nome_loja, loja_id in self.LOJAS.items():
             r = self.api.get('compras', {"loja_id": loja_id, 'fornecedor_id': self.fornecedor_id})
             for c in r.get('data', []):
-                print(c['Compra']['numero_nfe'], str(self.DANFE))
                 if str(int(c['Compra']['numero_nfe'])) == str(self.DANFE):
                     self.compra_id = c['Compra']['id']
+                    print(1)
                     link = f"https://gestaoclick.com/compras/editar/{self.compra_id}"
+                    print(2)
                     self.message = (f"CANCELADO! Nota já existente na loja *{nome_loja}*: {link}\n"
                                     "Envie outro arquivo ou escolha uma opção:\n1️⃣ AGRO\n2️⃣ LDMB\n3️⃣ JCBF")
+                    print(3)
                     return True
         return False
 
