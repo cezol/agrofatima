@@ -52,10 +52,10 @@ class UserSession:
             res.message("🤖🛑")
         return str(res)
     def is_authorized(self):
-        # Aqui, por exemplo, só liberar um número específico
-        return self.number in ["997543066"]
+        return self.number in USER_MAP
     def get_temp_list(self):
         return self.user.get("lista_temp", [])
     def clear_temp_list(self):
         self.users.update_one({"number": self.number}, {"$unset": {"lista_temp": ""}})
         self.user.pop("lista_temp", None)
+
