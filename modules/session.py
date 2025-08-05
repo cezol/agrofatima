@@ -52,12 +52,13 @@ class UserSession:
             res.message("🤖🛑")
         return str(res)
     def is_authorized(self):
-        print('aaaaaaaaa')
+        print(self.number)
         return self.number in USER_MAP
     def get_temp_list(self):
         return self.user.get("lista_temp", [])
     def clear_temp_list(self):
         self.users.update_one({"number": self.number}, {"$unset": {"lista_temp": ""}})
         self.user.pop("lista_temp", None)
+
 
 
