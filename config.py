@@ -4,7 +4,7 @@
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
-acesso_pdf = ['LUIZ','JCB','JCBF']
+acesso_pdf = ['LUIZ','JCB',]
 load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -136,6 +136,7 @@ Saída:
 
 ⚠️ Não adicione explicações ou texto adicional. Apenas a lista, no formato exato solicitado.
 """
+
 
 
 
