@@ -108,7 +108,6 @@ class NotaFiscal:
             return
         if self._verifica_duplicidade():
             return
-        print(3)
         self._criar_nova_compra()
 
     def _buscar_fornecedor_id(self):
@@ -121,12 +120,9 @@ class NotaFiscal:
             for c in r.get('data', []):
                 if str(int(c['Compra']['numero_nfe'])) == str(self.DANFE):
                     self.compra_id = c['Compra']['id']
-                    print(1)
                     link = f"https://gestaoclick.com/compras/editar/{self.compra_id}"
-                    print(2)
                     self.message = (f"CANCELADO! Nota já existente na loja *{nome_loja}*: {link}\n"
                                     "Envie outro arquivo ou escolha uma opção:\n1️⃣ AGRO\n2️⃣ LDMB\n3️⃣ JCBF")
-                    print(3)
                     return True
         return False
 
