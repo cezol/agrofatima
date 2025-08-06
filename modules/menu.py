@@ -76,6 +76,7 @@ class MenuManager:
     @staticmethod
     def _handle_lista_add(text, res, user, db_lista):
         try:
+            text = text.replace("null", "None")
             lista_itens = ast.literal_eval(text)
             for item_dict in lista_itens:
                 if "item" in item_dict and "quantidade" in item_dict:
@@ -96,9 +97,8 @@ class MenuManager:
     @staticmethod
     def handle_remove_item(text, res, user, db_lista):
         try:
-            print(0)
-            lista_itens = json.loads(text)
-            print(lista_itens)
+            text = text.replace("null", "None")
+            lista_itens = ast.literal_eval(text)
             doc = db_lista.find_one({}, {"_id": 0, "ITENS": 1})
             itens = doc.get("ITENS", []) if doc else []
 
@@ -144,4 +144,5 @@ class MenuManager:
         else:
             res.message("❌ Digite `SIM` para confirmar ou 0️⃣ para cancelar.")
         return str(res)
+
 
