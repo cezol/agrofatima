@@ -1,4 +1,6 @@
 # modules/menu.py
+import json
+
 from config import acesso_pdf
 from modules.gestao import FuncionarioAPI
 from .utils import format_lista, get_raw_itens, remover_duplicados
@@ -96,18 +98,15 @@ class MenuManager:
     @staticmethod
     def handle_remove_item(text, res, user, db_lista):
         try:
-            print(00000)
-            lista_itens = ast.literal_eval(text)
+            lista_itens = json.loads(text)
             doc = db_lista.find_one({}, {"_id": 0, "ITENS": 1})
             itens = doc.get("ITENS", []) if doc else []
 
             removidos = []
             nao_encontrados = []
-            print(1)
             for item_audio in lista_itens:
                 nome_item = item_audio.get("item", "").strip().lower()
                 encontrado = False
-                print(2)
                 for item_salvo in itens:
                     if item_salvo.get("item", "").strip().lower() == nome_item:
                         db_lista.update_one({}, {"$pull": {"ITENS": item_salvo}})
@@ -117,15 +116,13 @@ class MenuManager:
 
                 if not encontrado:
                     nao_encontrados.append(nome_item)
-            print(3)
             nao_encontrados = remover_duplicados(nao_encontrados)
-            
+
             msg = ""
             if removidos:
                 msg += "❌ Itens removidos:\n" + "\n".join(f"• {i}" for i in removidos) + "\n"
             if nao_encontrados:
                 msg += "\n⚠️ Não encontrados na lista:\n" + "\n".join(f"• {i}" for i in nao_encontrados)
-            print(4)
             res.message((msg or "⚠️ Nenhum item válido informado.") + "\n" +
                         MenuManager.menu_principal(user.get_loja(), db_lista, user.get_nome()))
 
@@ -147,4 +144,3 @@ class MenuManager:
         else:
             res.message("❌ Digite `SIM` para confirmar ou 0️⃣ para cancelar.")
         return str(res)
-
