@@ -84,9 +84,7 @@ def reply():
                          "content": f"O usuário disse: '{text}'. Interprete como um item para remover de uma lista de compras, sem explicações."}
                     ]
                 )
-                print(text)
                 text = gpt_response.choices[0].message.content.strip()
-                print(text)
                 MenuManager.handle_remove_item(text, res, user, lista)
             elif option == 'limpar':
                 MenuManager.clear_lista(res, user, lista)
@@ -117,4 +115,5 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
+
 
