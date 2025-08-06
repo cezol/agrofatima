@@ -88,10 +88,7 @@ class MenuManager:
                     if user.get_nome() == 'JCBF':
                         print('jcbfffffffffffffffffff')
                     db_lista.update_one({}, {"$push": {"ITENS": novo_item}}, upsert=True)
-            res.message(
-                f"*✅ Lista atualizada!!*"
-                + "\n\n" + MenuManager.menu_principal(user.get_loja(), db_lista, user.get_nome())
-            )
+            res.message(f"*✅ Lista atualizada!!*"+ "\n\n" + MenuManager.menu_principal(user.get_loja(), db_lista, user.get_nome()))
         except:
             res.message('FORMATAO INVALIDO')
         return str(res)
@@ -105,11 +102,11 @@ class MenuManager:
 
             removidos = []
             nao_encontrados = []
-
+            print(1)
             for item_audio in lista_itens:
                 nome_item = item_audio.get("item", "").strip().lower()
                 encontrado = False
-
+                print(2)
                 for item_salvo in itens:
                     if item_salvo.get("item", "").strip().lower() == nome_item:
                         db_lista.update_one({}, {"$pull": {"ITENS": item_salvo}})
@@ -119,15 +116,15 @@ class MenuManager:
 
                 if not encontrado:
                     nao_encontrados.append(nome_item)
-
+            print(3)
             nao_encontrados = remover_duplicados(nao_encontrados)
-
+            
             msg = ""
             if removidos:
                 msg += "❌ Itens removidos:\n" + "\n".join(f"• {i}" for i in removidos) + "\n"
             if nao_encontrados:
                 msg += "\n⚠️ Não encontrados na lista:\n" + "\n".join(f"• {i}" for i in nao_encontrados)
-
+            print(4)
             res.message((msg or "⚠️ Nenhum item válido informado.") + "\n" +
                         MenuManager.menu_principal(user.get_loja(), db_lista, user.get_nome()))
 
