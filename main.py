@@ -21,6 +21,7 @@ def reply():
     num_media = int(request.form.get("NumMedia", 0))
     res = MessagingResponse()
     user = UserSession(number, db_users)
+    print(user.get_nome())
     if user.get_nome() == 'JCBF':
         lista = db_lista_sinezia
     else:
@@ -116,3 +117,4 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
+
