@@ -30,7 +30,7 @@ def reply():
     if text == "..":
         user.toggle_bot(res)
         if user.is_bot_active():
-            res.message(MenuManager.menu_principal(user.get_loja(), db_lista,user.get_nome()))
+            res.message(MenuManager.menu_principal(user.get_loja(), lista,user.get_nome()))
             user.set_status("main")
         return str(res)
     if not user.is_bot_active():
@@ -111,9 +111,8 @@ def reply():
             res.message(f"❌ Erro ao transcrever áudio: {e}")
             return str(res)
 
-    return MenuManager.process_input(text, res, user, db_lista)
+    return MenuManager.process_input(text, res, user, lista)
 
 
 if __name__ == "__main__":
     app.run()
-
