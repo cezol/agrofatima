@@ -21,6 +21,10 @@ def reply():
     num_media = int(request.form.get("NumMedia", 0))
     res = MessagingResponse()
     user = UserSession(number, db_users)
+    if user.get_nome() == 'JCBF':
+        lista = db_lista_sinezia
+    else:
+        lista = db_lista
     if not user.is_authorized():
         return str(res)
     if text == "..":
@@ -34,10 +38,6 @@ def reply():
     if media_url and ("pdf" in media_type.lower() or "image" in media_type.lower()) and user.get_nome() in acesso_pdf:
         res.message(DocumentHandler.handle_upload(media_type, media_url, res, user))
         return str(res)
-    if user.get_nome() == 'JCBF':
-        lista = db_lista_sinezia
-    else:
-        lista = db_lista
     if media_url and "audio" in media_type:
         try:
             response = requests.get(media_url, auth=(TWILIO_SID, TWILIO_AUTH_TOKEN))
@@ -116,3 +116,4 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
+
