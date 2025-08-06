@@ -87,8 +87,6 @@ class MenuManager:
                         "quantidade": quantidade,
                         "nome": nome
                     }
-                    if user.get_nome() == 'JCBF':
-                        print('jcbfffffffffffffffffff')
                     db_lista.update_one({}, {"$push": {"ITENS": novo_item}}, upsert=True)
             res.message(f"*✅ Lista atualizada!!*"+ "\n\n" + MenuManager.menu_principal(user.get_loja(), db_lista, user.get_nome()))
         except:
@@ -144,3 +142,4 @@ class MenuManager:
         else:
             res.message("❌ Digite `SIM` para confirmar ou 0️⃣ para cancelar.")
         return str(res)
+
