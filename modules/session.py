@@ -3,7 +3,8 @@ USER_MAP = {
     "996479181": "LEANDRO",
     "997543066": "JCBF",
     "999350358": "LUIZ",
-    "981172066": "JCB"
+    "981172066": "JCB",
+    "981229535": "SINE"
 }
 
 class UserSession:
@@ -58,6 +59,7 @@ class UserSession:
     def clear_temp_list(self):
         self.users.update_one({"number": self.number}, {"$unset": {"lista_temp": ""}})
         self.user.pop("lista_temp", None)
+
 
 
 
