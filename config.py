@@ -4,7 +4,7 @@
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
-acesso_pdf = ['LUIZ','JCB',]
+acesso_pdf = ['LUIZ','JCB']
 load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -22,6 +22,7 @@ cluster = MongoClient(MONGODB_URI, tls=True, tlsAllowInvalidCertificates=True)
 db = cluster["Agrofatima"]
 db_users = db["users"]
 db_lista = db["lista_de_compras"]
+db_lista_sinezia = db['lista_de_compras_sinezia']
 PROMPT_DOC2 = """Analise o documento fornecido e extraia as seguintes informações de forma estruturada:
 
 ara cada nota fiscal, gere um dicionario python separado com os campos:
@@ -136,6 +137,7 @@ Saída:
 
 ⚠️ Não adicione explicações ou texto adicional. Apenas a lista, no formato exato solicitado.
 """
+
 
 
 
