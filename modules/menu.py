@@ -97,6 +97,7 @@ class MenuManager:
     def handle_remove_item(text, res, user, db_lista):
         try:
             lista_itens = json.loads(text)
+            print(lista_itens)
             doc = db_lista.find_one({}, {"_id": 0, "ITENS": 1})
             itens = doc.get("ITENS", []) if doc else []
 
@@ -142,4 +143,3 @@ class MenuManager:
         else:
             res.message("❌ Digite `SIM` para confirmar ou 0️⃣ para cancelar.")
         return str(res)
-
