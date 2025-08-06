@@ -1,10 +1,11 @@
+
 import requests
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 from modules.session import UserSession
 from modules.menu import MenuManager
 from modules.document import DocumentHandler
-from config import db_users, db_lista, OPENAI_API_KEY, TWILIO_AUTH_TOKEN, TWILIO_SID, PROMPT_FILTRAGEM, \
+from config import db_users, db_lista, db_lista_sinezia, OPENAI_API_KEY, TWILIO_AUTH_TOKEN, TWILIO_SID, PROMPT_FILTRAGEM, \
     PROMPT_AUDIO_REMOVE, PROMPT_AUDIO_ADD, acesso_pdf, PROMPT_TELEFONE
 import openai
 
@@ -33,6 +34,10 @@ def reply():
     if media_url and ("pdf" in media_type.lower() or "image" in media_type.lower()) and user.get_nome() in acesso_pdf:
         res.message(DocumentHandler.handle_upload(media_type, media_url, res, user))
         return str(res)
+    if user.get_nome() == 'JCBF':
+        lista = db_lista_sinezia
+    else:
+        lista = db_lista
     if media_url and "audio" in media_type:
         try:
             response = requests.get(media_url, auth=(TWILIO_SID, TWILIO_AUTH_TOKEN))
@@ -69,7 +74,7 @@ def reply():
                     ]
                 )
                 text = gpt_response.choices[0].message.content.strip()
-                MenuManager._handle_lista_add(text, res, user, db_lista)
+                MenuManager._handle_lista_add(text, res, user, lista)
             elif option == 'remover':
                 gpt_response = openai.chat.completions.create(
                     model="gpt-4",
@@ -81,9 +86,9 @@ def reply():
                     ]
                 )
                 text = gpt_response.choices[0].message.content.strip()
-                MenuManager.handle_remove_item(text, res, user, db_lista)
+                MenuManager.handle_remove_item(text, res, user, lista)
             elif option == 'limpar':
-                MenuManager.clear_lista(res, user, db_lista)
+                MenuManager.clear_lista(res, user, lista)
             elif option == 'telefone':
                 gpt_response = openai.chat.completions.create(
                     model="gpt-4",
@@ -95,7 +100,6 @@ def reply():
                     ]
                 )
                 nome = gpt_response.choices[0].message.content.strip()
-                # res.message(MenuManager.buscarTelefones(nome))
                 ENCONTRADOS = MenuManager.buscarTelefones(nome)
                 if ENCONTRADOS:
                     for i, (nome, telefone) in enumerate(ENCONTRADOS, 1):
