@@ -24,14 +24,6 @@ def reply():
     user = UserSession(number, db_users)
     if not user.is_authorized():
         return str(res)
-    if text == 'aa':
-        ENCONTRADOS = MenuManager.buscarTelefones(['julio'].strip())
-        if ENCONTRADOS:
-            for i, (nome, telefone) in enumerate(ENCONTRADOS, 1):
-                res.message((f"{i}. {nome} - {telefone}"))
-        else:
-            res.message('nao encontrado')
-        return
     if user.get_nome() == 'JCBF':
         lista = db_lista_sinezia
     else:
@@ -125,6 +117,3 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
-
-
-
