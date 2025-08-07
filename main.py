@@ -106,7 +106,7 @@ def reply():
                     for i, (nome, telefone) in enumerate(ENCONTRADOS, 1):
                         res.message((f"{i}. {nome} - {telefone}"))
                 else:
-                    res.message('nao encontrado')
+                    res.message(f'{nome}nao encontrado')
             return str(res)
         except Exception as e:
             res.message(f"❌ Erro ao transcrever áudio: {e}")
@@ -117,5 +117,6 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
+
 
 
