@@ -66,7 +66,7 @@ class FuncionarioAPI:
                 req = Request(url, headers=self.headers)
                 response = urlopen(req).read()
                 data = json.loads(response)
-
+                print(data)
                 for f in data.get("data", []):
                     nome = f.get("nome", "")
                     if all(t in self._normalizar(nome) for t in normalizados):
