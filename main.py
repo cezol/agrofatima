@@ -21,10 +21,8 @@ def reply():
     num_media = int(request.form.get("NumMedia", 0))
     res = MessagingResponse()
     user = UserSession(number, db_users)
-    if text == 'aa':
-        ENCONTRADOS = MenuManager.buscarTelefones('julio')
-        return
-    if user.get_nome() == 'SINE':
+    
+    if user.get_nome() == 'JCBF':
         lista = db_lista_sinezia
     else:
         lista = db_lista
@@ -48,6 +46,7 @@ def reply():
             audio_data = response.content
             audio_path = "/tmp/audio.ogg"
             with open(audio_path, "wb") as f:
+                print('5')
                 f.write(audio_data)
             with open(audio_path, "rb") as audio_file:
                 transcript = openai.audio.transcriptions.create(
@@ -118,7 +117,3 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
-
-
-
-
