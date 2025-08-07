@@ -66,6 +66,7 @@ class FuncionarioAPI:
                 req = Request(url, headers=self.headers)
                 response = urlopen(req).read()
                 data = json.loads(response)
+                print(data)
                 for f in data.get("data", []):
                     nome = f.get("nome", "")
                     if all(t in self._normalizar(nome) for t in normalizados):
@@ -74,11 +75,9 @@ class FuncionarioAPI:
                 if not data.get("meta", {}).get("proxima_pagina"):
                     break
                 pagina = data["meta"]["proxima_pagina"]
-
             except Exception as e:
                 print(f"Erro ao buscar página {pagina}: {e}")
                 break
-
         return encontrados
 
 
