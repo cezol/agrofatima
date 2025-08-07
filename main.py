@@ -34,7 +34,7 @@ def reply():
             for i, (nome, telefone) in enumerate(ENCONTRADOS, 1):
                 res.message((f"{i}. {nome} - {telefone}"))
         else:
-            res.message(f'{nome}nao encontrado')
+            res.message(f'nao encontrado')
         return str(res)
     if text == "..":
         user.toggle_bot(res)
@@ -125,6 +125,7 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
+
 
 
 
