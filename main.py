@@ -25,7 +25,7 @@ def reply():
     if not user.is_authorized():
         return str(res)
     if text == 'aa':
-        ENCONTRADOS = MenuManager.buscarTelefones('julio')
+        ENCONTRADOS = MenuManager.buscarTelefones(['julio'])
         if ENCONTRADOS:
             for i, (nome, telefone) in enumerate(ENCONTRADOS, 1):
                 res.message((f"{i}. {nome} - {telefone}"))
@@ -125,4 +125,5 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
+
 
