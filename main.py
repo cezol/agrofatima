@@ -28,7 +28,7 @@ def reply():
         lista = db_lista_sinezia
     else:
         lista = db_lista
-    if text == 'aa'
+    if text == 'aa':
         ENCONTRADOS = MenuManager.buscarTelefones('["julio", "cesar"]')
         if ENCONTRADOS:
             for i, (nome, telefone) in enumerate(ENCONTRADOS, 1):
