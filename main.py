@@ -28,14 +28,6 @@ def reply():
         lista = db_lista_sinezia
     else:
         lista = db_lista
-    if text == 'aa':
-        ENCONTRADOS = MenuManager.buscarTelefones('["julio", "cesar"]')
-        if ENCONTRADOS:
-            for i, (nome, telefone) in enumerate(ENCONTRADOS, 1):
-                res.message((f"{i}. {nome} - {telefone}"))
-        else:
-            res.message(f'nao encontrado')
-        return str(res)
     if text == "..":
         user.toggle_bot(res)
         if user.is_bot_active():
@@ -125,6 +117,7 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
+
 
 
 
