@@ -46,7 +46,6 @@ def reply():
             audio_data = response.content
             audio_path = "/tmp/audio.ogg"
             with open(audio_path, "wb") as f:
-                print('5')
                 f.write(audio_data)
             with open(audio_path, "rb") as audio_file:
                 transcript = openai.audio.transcriptions.create(
@@ -118,4 +117,5 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
+
 
