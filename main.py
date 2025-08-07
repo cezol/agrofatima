@@ -23,9 +23,9 @@ def reply():
     user = UserSession(number, db_users)
     
     if user.get_nome() == 'JCBF':
-        lista = db_lista_sinezia
-    else:
-        lista = db_lista
+        print('ssssssss')
+    
+    lista = db_lista
     if not user.is_authorized():
         return str(res)
     if text == "..":
@@ -117,3 +117,4 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
+
