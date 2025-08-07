@@ -20,12 +20,17 @@ def reply():
     media_type = request.form.get("MediaContentType0", "")
     num_media = int(request.form.get("NumMedia", 0))
     res = MessagingResponse()
-    user = UserSession(number, db_users)
 
-    
-    lista = db_lista
+    user = UserSession(number, db_users)
     if not user.is_authorized():
         return str(res)
+    if text == 'aa':
+        ENCONTRADOS = MenuManager.buscarTelefones('julio')
+        return
+    if user.get_nome() == 'JCBF':
+        lista = db_lista_sinezia
+    else:
+        lista = db_lista
     if text == "..":
         user.toggle_bot(res)
         if user.is_bot_active():
@@ -115,5 +120,3 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
-
-
