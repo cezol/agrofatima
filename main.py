@@ -21,6 +21,9 @@ def reply():
     num_media = int(request.form.get("NumMedia", 0))
     res = MessagingResponse()
     user = UserSession(number, db_users)
+    if text == 'aa':
+        ENCONTRADOS = MenuManager.buscarTelefones('julio')
+        return
     if user.get_nome() == 'SINE':
         lista = db_lista_sinezia
     else:
@@ -115,6 +118,7 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
+
 
 
 
