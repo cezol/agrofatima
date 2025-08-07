@@ -101,7 +101,6 @@ def reply():
                 )
                 nome = gpt_response.choices[0].message.content.strip()
                 ENCONTRADOS = MenuManager.buscarTelefones(nome)
-                print(nome)
                 if ENCONTRADOS:
                     for i, (nome, telefone) in enumerate(ENCONTRADOS, 1):
                         res.message((f"{i}. {nome} - {telefone}"))
@@ -117,6 +116,7 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
+
 
 
 
