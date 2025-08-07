@@ -21,9 +21,7 @@ def reply():
     num_media = int(request.form.get("NumMedia", 0))
     res = MessagingResponse()
     user = UserSession(number, db_users)
-    
-    if user.get_nome() == 'JCBF':
-        print('ssssssss')
+
     
     lista = db_lista
     if not user.is_authorized():
@@ -117,4 +115,5 @@ def reply():
 
 if __name__ == "__main__":
     app.run()
+
 
